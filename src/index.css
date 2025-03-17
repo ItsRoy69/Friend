@@ -68,7 +68,7 @@
 
 @layer components {
   .button-transition {
-    @apply transition-all duration-300 ease-apple transform hover:-translate-y-0.5;
+    @apply transition-all duration-300 ease-in-out transform hover:-translate-y-0.5;
   }
   
   .link-underline {
@@ -76,7 +76,7 @@
   }
   
   .card-hover {
-    @apply transition-all duration-300 ease-apple hover:shadow-lg hover:-translate-y-1;
+    @apply transition-all duration-300 ease-in-out hover:shadow-lg hover:-translate-y-1;
   }
 }
 
