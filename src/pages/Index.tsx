@@ -9,7 +9,6 @@ import Footer from '../components/home/Footer';
 
 const Index = () => {
   useEffect(() => {
-    // Ensure smooth scrolling when clicking on anchor links
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
       anchor.addEventListener('click', function (e) {
         e.preventDefault();
@@ -26,7 +25,6 @@ const Index = () => {
       });
     });
     
-    // Fade in elements as they come into view
     const observerOptions = {
       root: null,
       rootMargin: '0px',

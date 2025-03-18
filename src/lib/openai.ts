@@ -1,9 +1,9 @@
 import OpenAI from 'openai';
 
-// Initialize OpenAI client
+
 const openai = new OpenAI({
-  apiKey: import.meta.env.VITE_OPENAI_API_KEY, // Use Vite environment variables
-  dangerouslyAllowBrowser: true // Note: In production, API calls should be made from backend
+  apiKey: import.meta.env.VITE_OPENAI_API_KEY,
+  dangerouslyAllowBrowser: true 
 });
 
 export const generateWebsiteFromPrompt = async (

@@ -52,7 +52,6 @@ export default function WebsiteGenerator() {
       const processedCode = cleanupGeneratedCode(result.code);
       setGeneratedCode(processedCode);
       
-      // Create a preview URL using Blob
       const htmlBlob = new Blob([processedCode], { type: 'text/html' });
       const url = URL.createObjectURL(htmlBlob);
       setPreviewUrl(url);
@@ -65,11 +64,34 @@ export default function WebsiteGenerator() {
   };
 
   const cleanupGeneratedCode = (code: string): string => {
-    let cleanCode = code.replace(/```html|```|```css|```javascript/g, '');
+    let cleanCode = code.replace(/```(html|css|javascript|jsx|typescript)?\n?|```/g, '');
+    
     cleanCode = cleanCode.replace(/### Explanation:.*?(?=<|$)/gs, '');
+    cleanCode = cleanCode.replace(/Here is a complete HTML file.*?(?=<!DOCTYPE|<html|<head|<body|<|$)/gs, '');
+    cleanCode = cleanCode.replace(/This HTML file.*?(?=<!DOCTYPE|<html|<head|<body|<|$)/gs, '');
     cleanCode = cleanCode.replace(/\*\*HTML\*\*:|\*\*CSS\*\*:|\*\*JavaScript\*\*:/g, '');
     
-    if (!cleanCode.includes('<!DOCTYPE html>')) {
+    cleanCode = cleanCode.replace(/^#+\s+.*$/gm, '');
+    
+    cleanCode = cleanCode.split('\n')
+      .filter(line => {
+        const trimmedLine = line.trim();
+        return trimmedLine === '' || 
+               trimmedLine.startsWith('<') || 
+               trimmedLine.startsWith('}') || 
+               trimmedLine.startsWith('{') ||
+               trimmedLine.includes(':') ||
+               trimmedLine.includes('=') ||
+               trimmedLine.includes('(') ||
+               trimmedLine.startsWith('.') ||
+               trimmedLine.startsWith('@');
+      })
+      .join('\n');
+    
+    if (!cleanCode.includes('<!DOCTYPE html>') && 
+        (cleanCode.includes('<html') || 
+         cleanCode.includes('<head') || 
+         cleanCode.includes('<body'))) {
       cleanCode = '<!DOCTYPE html>\n' + cleanCode;
     }
     
