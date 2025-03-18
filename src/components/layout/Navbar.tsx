@@ -38,7 +38,7 @@ const Navbar = () => {
             to="/" 
             className="text-2xl font-display font-bold tracking-tight animate-fade-in"
           >
-            <span className="text-gradient">Lovable</span>
+            <span className="text-gradient">Friend</span>
           </Link>
 
           {/* Desktop Navigation */}

@@ -50,11 +50,11 @@ const Footer = () => {
         
         <div className="border-t border-border pt-8 flex flex-col md:flex-row items-center justify-between">
           <Link to="/" className="text-xl font-display font-bold tracking-tight mb-4 md:mb-0">
-            <span className="text-gradient">Lovable</span>
+            <span className="text-gradient">Friend</span>
           </Link>
           
           <div className="text-sm text-muted-foreground">
-            © {new Date().getFullYear()} Lovable. All rights reserved.
+            © {new Date().getFullYear()} Friend. All rights reserved.
           </div>
         </div>
       </div>
